@@ -1,0 +1,11 @@
+<button
+  class="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7shadow-sm ring-1"
+  [ngClass]="{
+    'text-white bg-primary-600 hover:bg-primary-700 ring-primary hover:ring-primary-700':
+      type === 'primary',
+    'text-gray-900 bg-accent-200  hover:ring-accent-300 ring-1 ring-gray-900/10 hover:ring-gray-900/20':
+      type === 'secondary'
+  }"
+>
+  <ng-content></ng-content>
+</button>

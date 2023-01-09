@@ -1,0 +1,25 @@
+<ng-container *ngIf="error$ | async as error">
+    <h1> Sorry! </h1>
+    <h3>{{error}}</h3>
+</ng-container>
+<ng-container *ngIf="isLoading$ | async">
+    <h2>... Fake loading ...</h2>
+    <mat-spinner></mat-spinner>
+</ng-container>
+<section *ngIf="isLoaded$ |  async"
+         class="content"
+         fxLayout="column"
+         fxLayoutAlign="center center">
+    <app-friends-table [friends]="friends$">
+        <div class="table-actions">
+            <button (click)="addFriend()"
+                    color="primary"
+                    fxFlex="none"
+                    mat-mini-fab
+                    matTooltip="Add Friend"
+                    type="button">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </app-friends-table>
+</section>

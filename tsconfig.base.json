@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ng-demos/ngrx-demo": ["libs/demos/ngrx-demo/src/index.ts"],
       "@ng-demos/ui": ["libs/shared/ui/src/index.ts"]
     }
   },

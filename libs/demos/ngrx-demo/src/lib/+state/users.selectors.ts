@@ -1,39 +1,68 @@
+import { getError, LoadingState } from '@ngrx-demos-shared';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { USERS_FEATURE_KEY, UsersState, usersAdapter } from './users.reducer';
-
+import { adapter, usersFeature, UsersState } from './users.reducer';
 // Lookup the 'Users' feature state managed by NgRx
-export const selectUsersState =
-  createFeatureSelector<UsersState>(USERS_FEATURE_KEY);
 
-const { selectAll, selectEntities } = usersAdapter.getSelectors();
-
-export const selectUsersLoaded = createSelector(
-  selectUsersState,
-  (state: UsersState) => state.loaded
+/**
+ * Selector for the Feature State of 'Users
+ */
+export const selectUsersState = createFeatureSelector<UsersState>(
+  usersFeature.name
 );
 
-export const selectUsersError = createSelector(
-  selectUsersState,
-  (state: UsersState) => state.error
+/**
+ * Selectors from the entity
+ */
+export const { selectAll: selectAllUsers } = adapter.getSelectors(
+  selectUsersState as any
 );
 
-export const selectAllUsers = createSelector(
+/**
+ * Selector for a flag that indicates if there is an API request in progress
+ */
+export const selectIsLoading = createSelector(
   selectUsersState,
-  (state: UsersState) => selectAll(state)
+  (state) => state.callState === LoadingState.LOADING
 );
 
-export const selectUsersEntities = createSelector(
+/**
+ * Selector for a flag that indicates if data has been loaded
+ */
+export const selectIsLoaded = createSelector(
   selectUsersState,
-  (state: UsersState) => selectEntities(state)
+  (state) => state.callState === LoadingState.LOADED
 );
 
-export const selectSelectedId = createSelector(
-  selectUsersState,
-  (state: UsersState) => state.selectedId
+/**
+ * Selector for  the error message
+ */
+export const selectError = createSelector(selectUsersState, (state) =>
+  getError(state.callState)
 );
 
-export const selectEntity = createSelector(
-  selectUsersEntities,
-  selectSelectedId,
-  (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
+export const selectTotalUsersCurrentMonth = createSelector(
+  selectAllUsers,
+  (users) => {
+    const currentMonth = new Date().getMonth();
+
+    return users.filter((user) => user.created.getUTCMonth() === currentMonth)
+      .length;
+  }
+);
+
+export const selectTotalUsersPreviousMonth = createSelector(
+  selectAllUsers,
+  (users) => {
+    const previousMonth = new Date().getUTCMonth() - 1;
+    return users.filter((user) => user.created.getUTCMonth() === previousMonth)
+      .length;
+  }
+);
+
+export const selectUserAcquisitionDifference = createSelector(
+  selectTotalUsersCurrentMonth,
+  selectTotalUsersPreviousMonth,
+  (totalCurrentMonth, totalPreviousMonth) => {
+    return (totalCurrentMonth * 100) / totalPreviousMonth;
+  }
 );

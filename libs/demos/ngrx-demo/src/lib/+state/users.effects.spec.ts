@@ -2,10 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
-
-import * as UsersActions from './users.actions';
 import { UsersEffects } from './users.effects';
 
 describe('UsersEffects', () => {
@@ -23,17 +20,5 @@ describe('UsersEffects', () => {
     });
 
     effects = TestBed.inject(UsersEffects);
-  });
-
-  describe('init$', () => {
-    it('should work', () => {
-      actions = hot('-a-|', { a: UsersActions.initUsers() });
-
-      const expected = hot('-a-|', {
-        a: UsersActions.loadUsersSuccess({ users: [] }),
-      });
-
-      expect(effects.init$).toBeObservable(expected);
-    });
   });
 });

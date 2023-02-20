@@ -4,8 +4,17 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { PageContentComponent, SpinnerComponent } from '@ng-demos/ui';
-import { User, UsersApiService, UserTableComponent } from '@ngrx-demos-shared';
+import {
+  ModalService,
+  PageContentComponent,
+  SpinnerComponent,
+} from '@ng-demos/ui';
+import {
+  User,
+  UserModalComponent as UserModalComponentType,
+  UsersApiService,
+  UserTableComponent,
+} from '@ngrx-demos-shared';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DemoPageActions } from '../+state/users.actions';
@@ -52,6 +61,7 @@ export class NgrxDemoPageComponent {
 
   constructor(
     private usersApiService: UsersApiService,
+    private modalService: ModalService<UserModalComponentType>,
     private store: Store<UsersState>
   ) {
     this.store.dispatch(DemoPageActions.enter());
@@ -66,7 +76,9 @@ export class NgrxDemoPageComponent {
    * Opens a modal to add a new user.
    * Dispatches an action to save the user once the dialog is closed
    */
-  public async addFriend(): Promise<void> {
+  public async addUser(): Promise<void> {
+    const { UserModalComponent } = await import('@ngrx-demos-shared');
+    await this.modalService.open(UserModalComponent);
     // this.store.dispatch(FriendsTrackerPageActions.addFriend({ user }));
   }
 }

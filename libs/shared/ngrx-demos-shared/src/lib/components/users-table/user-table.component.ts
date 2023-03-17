@@ -10,7 +10,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
 
 import { Observable } from 'rxjs';
-import { User } from '../../models/users.model';
+import { User } from '../../models/users.models';
 
 @Component({
   standalone: true,

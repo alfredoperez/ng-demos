@@ -23,9 +23,12 @@
           <h1>Sorry!</h1>
           <h3>{{ error }}</h3>
       </ng-container>
-      <ng-container *ngIf="isLoading$ | async">
-          <ui-spinner></ui-spinner>
-      </ng-container>
+        <ng-container *ngIf="isLoading$ | async">
+         <div class="flex flex-col  mt-32 items-center space-y-12">
+          <mat-spinner></mat-spinner>
+          <p>... Fake loading ...</p>
+         </div>
+        </ng-container>
       <ngrx-demos-users-table
               *ngIf="isLoaded$ | async"
               [users]="users$"

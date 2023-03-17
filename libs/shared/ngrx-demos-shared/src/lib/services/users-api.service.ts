@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { User } from '../models/users.model';
+import { User } from '../models/users.models';
 
 /**
  * Service to do API call to the `friends` resource.
@@ -20,7 +20,7 @@ export class UsersApiService {
     // return throwError(new Error('Fake error'));
     const users = [] as Array<User>;
 
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 10; i++) {
       const friend = {
         id: faker.datatype.uuid(),
         name: faker.name.fullName(),
@@ -35,7 +35,7 @@ export class UsersApiService {
       users.push(friend);
     }
 
-    return of(users).pipe(delay(1000));
+    return of(users).pipe(delay(1413));
   }
 
   /**

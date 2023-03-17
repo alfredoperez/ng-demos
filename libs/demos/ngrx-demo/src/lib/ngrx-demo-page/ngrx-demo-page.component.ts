@@ -4,19 +4,18 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  ModalService,
-  PageContentComponent,
-  SpinnerComponent,
-} from '@ng-demos/ui';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ModalService, PageContentComponent } from '@ng-demos/ui';
 import {
   User,
+  UserModalComponent,
   UserModalComponent as UserModalComponentType,
   UsersApiService,
   UserTableComponent,
 } from '@ngrx-demos-shared';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { DemoPageActions } from '../+state/users.actions';
 import { UsersState } from '../+state/users.reducer';
 import {
@@ -30,9 +29,10 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    SpinnerComponent,
     PageContentComponent,
     UserTableComponent,
+    MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './ngrx-demo-page.component.html',
   encapsulation: ViewEncapsulation.Emulated,
@@ -62,7 +62,8 @@ export class NgrxDemoPageComponent {
   constructor(
     private usersApiService: UsersApiService,
     private modalService: ModalService<UserModalComponentType>,
-    private store: Store<UsersState>
+    private store: Store<UsersState>,
+    private dialog: MatDialog
   ) {
     this.store.dispatch(DemoPageActions.enter());
 
@@ -77,8 +78,16 @@ export class NgrxDemoPageComponent {
    * Dispatches an action to save the user once the dialog is closed
    */
   public async addUser(): Promise<void> {
-    const { UserModalComponent } = await import('@ngrx-demos-shared');
-    await this.modalService.open(UserModalComponent);
-    // this.store.dispatch(FriendsTrackerPageActions.addFriend({ user }));
+    const user = await lastValueFrom(
+      this.dialog
+        .open(UserModalComponent, { height: '400px', width: '600px' })
+        .afterClosed()
+    );
+
+    if (!user) {
+      return;
+    }
+
+    this.store.dispatch(DemoPageActions.addUserClicked({ user }));
   }
 }

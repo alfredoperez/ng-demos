@@ -16,7 +16,7 @@
         "tsConfig": "apps/site/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/site/src/favicon.ico", "apps/site/src/assets"],
-        "styles": ["apps/site/src/styles.scss"],
+        "styles": ["apps/site/src/styles.scss", "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"],
         "scripts": []
       },
       "configurations": {

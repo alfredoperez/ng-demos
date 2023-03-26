@@ -16,7 +16,10 @@
         "tsConfig": "apps/site/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/site/src/favicon.ico", "apps/site/src/assets"],
-        "styles": ["apps/site/src/styles.scss", "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"],
+        "styles": [
+          "apps/site/src/styles.scss",
+          "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -77,6 +80,35 @@
       "options": {
         "jestConfig": "apps/site/jest.config.ts",
         "passWithNoTests": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/site/.storybook",
+        "browserTarget": "site:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/site",
+        "configDir": "apps/site/.storybook",
+        "browserTarget": "site:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
       }
     }
   },

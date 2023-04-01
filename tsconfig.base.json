@@ -15,9 +15,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ng-demos/home/feature-landing": [
+        "libs/home/feature-landing/src/index.ts"
+      ],
       "@ng-demos/ngrx-demo": ["libs/demos/ngrx-demo/src/index.ts"],
+      "@ng-demos/shared/ui/general": ["libs/shared/ui/general/src/index.ts"],
       "@ng-demos/storybook-host": ["libs/storybook-host/src/index.ts"],
-      "@ng-demos/ui": ["libs/shared/ui/src/index.ts"],
+      "@ng-demos/users/domain": ["libs/users/domain/src/index.ts"],
+      "@ng-demos/users/feature-manage": [
+        "libs/users/feature-manage/src/index.ts"
+      ],
       "@ngrx-demos-shared": ["libs/shared/ngrx-demos-shared/src/index.ts"]
     }
   },

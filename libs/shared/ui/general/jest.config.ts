@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
-  displayName: 'storybook-host',
-  preset: '../../jest.preset.js',
+  displayName: 'shared-ui-general',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {},
-  coverageDirectory: '../../coverage/libs/storybook-host',
+  coverageDirectory: '../../../../coverage/libs/shared/ui/general',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

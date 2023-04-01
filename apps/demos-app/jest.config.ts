@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
-  displayName: 'storybook-host',
+  displayName: 'demos-app',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {},
-  coverageDirectory: '../../coverage/libs/storybook-host',
+  coverageDirectory: '../../coverage/apps/demos-app',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

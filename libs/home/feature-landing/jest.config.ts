@@ -1,10 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'storybook-host',
-  preset: '../../jest.preset.js',
+  displayName: 'home-feature-landing',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  globals: {},
-  coverageDirectory: '../../coverage/libs/storybook-host',
+  coverageDirectory: '../../../coverage/libs/home/feature-landing',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

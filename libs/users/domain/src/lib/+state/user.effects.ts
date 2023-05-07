@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
+import { fetch } from '@nx/angular';
 import { map } from 'rxjs';
 import { UsersApiService } from '../services/users-api.service';
 import { ManageFeatureActions } from './actions/manage-feature.actions';

@@ -1,0 +1,67 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+  <div  mat-dialog-title>
+    <div class="flex flex-row items-center justify-between">
+      <h1>Add a new user!</h1>
+      <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content class="flex-col">
+
+    <div class="flex flex-row space-x-10">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input cdkFocusInitial formControlName="name" matInput required />
+        <mat-error
+                *ngIf="form.controls['name'].touched && form.controls['name'].invalid"
+        >
+          Name is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput required type="text" />
+        <mat-error
+          *ngIf="
+            form.controls['email'].touched && form.controls['email'].invalid
+          "
+        >
+          Email is required!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row space-x-10">
+      <mat-form-field appearance="fill">
+        <mat-label>Company</mat-label>
+        <input formControlName="company" matInput required type="text" />
+        <mat-error
+          *ngIf="
+            form.controls['company'].touched && form.controls['company'].invalid
+          "
+        >
+          Company is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput required type="text" />
+        <mat-error
+                *ngIf="form.controls['title'].touched && form.controls['title'].invalid"
+        >
+          Title is required!
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">Cancel</button>
+    <button [disabled]="form.invalid" color="primary" mat-button type="submit">
+      Add Friend
+    </button>
+  </div>
+</form>

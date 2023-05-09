@@ -1,0 +1,9 @@
+<div class="mt-4 items-center"  @fadeInUp>
+    <ag-grid-angular
+            class="ag-theme-alpine w-full  max-h-full"
+            style="height: 550px;"
+            [rowData]="users | async"
+            [columnDefs]="columnDefs"
+    >
+    </ag-grid-angular>
+</div>

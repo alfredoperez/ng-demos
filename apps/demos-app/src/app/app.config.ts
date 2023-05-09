@@ -1,15 +1,19 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideRouterStore, routerReducer } from '@ngrx/router-store';
-import { importProvidersFrom, isDevMode } from '@angular/core';
-import { provideState, provideStore } from '@ngrx/store';
-import { UserEffects, usersFeature } from '@ng-demos/users/domain';
-import { provideEffects } from '@ngrx/effects';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  isDevMode,
+} from '@angular/core';
 import {
   BrowserAnimationsModule,
   provideAnimations,
 } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
+import { UserEffects, usersFeature } from '@ng-demos/users/domain';
+import { provideEffects } from '@ngrx/effects';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
+import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([
@@ -30,6 +34,12 @@ export const appConfig: ApplicationConfig = {
             (x) => x.FeatureManageComponent
           ),
         providers: [provideState(usersFeature), provideEffects(UserEffects)],
+      },
+      {
+        path: 'signals-simple-store',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('@ng-demos/demos').then((x) => x.SignalsSimpleStoreComponent),
       },
     ]),
     provideAnimations(),

@@ -17,8 +17,12 @@ export class AppComponent {
       title: 'Home',
     },
     {
+      path: 'signals-simple-store',
+      title: 'Signals (Simple Store)',
+    },
+    {
       path: 'users',
-      title: 'Users',
+      title: 'NgRx(Users)',
     },
   ];
   isMobileMenuOpen = false;

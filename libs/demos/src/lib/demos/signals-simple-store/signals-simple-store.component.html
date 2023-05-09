@@ -1,0 +1,49 @@
+<ui-page-content title="Signals (Simple Store)">
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="flex gap-16">
+      <div class="flex-col gap-32 h-full">
+        <div
+          class="h-full w-48 p-2 mt-5 border-purple-500 border-dashed border-2"
+        >
+          <p class="text-center">Component 1</p>
+          <demos-change-name class="flex justify-center"></demos-change-name>
+        </div>
+        <div
+          class="h-full w-48 p-2 mt-5 border-purple-500 border-dashed border-2"
+        >
+          <p class="text-center">Component 2</p>
+          <demos-change-company
+            class="flex justify-center"
+          ></demos-change-company>
+        </div>
+        <div class="h-full p-2 mt-5 border-purple-500 border-dashed border-2">
+          <p class="text-center">Component 3</p>
+          <demos-change-address
+            class="flex justify-center"
+          ></demos-change-address>
+        </div>
+      </div>
+
+      <div class="flex w-full">
+        <div
+          class="flex-col h-full p-2 mt-5 w-3/4 border-purple-500 border-dashed border-2"
+        >
+          <div>
+            <p class="text-2xl">Current State</p>
+          </div>
+          <div class="flex-col mt-5">
+            <p class="text-indigo-600 font-semibold">
+              Name: <span class="text-black font-normal">{{ user().name }}</span>
+            </p>
+            <p class="text-indigo-600 font-semibold">
+              Company:<span class="text-black font-normal">{{ user().company }}</span>
+            </p>
+            <p class="text-indigo-600 font-semibold">
+              Address: <span class="text-black font-normal">{{ user().address }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ui-page-content>

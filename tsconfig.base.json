@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ng-demos/demos": ["libs/demos/src/index.ts"],
       "@ng-demos/home/feature-landing": [
         "libs/home/feature-landing/src/index.ts"
       ],

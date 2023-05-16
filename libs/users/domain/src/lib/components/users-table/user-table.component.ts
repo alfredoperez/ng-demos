@@ -8,8 +8,6 @@ import {
 import { fadeInUp400ms } from '@ng-demos/shared/ui/general';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
-
-import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 
 @Component({
@@ -26,7 +24,7 @@ export class UserTableComponent {
    * The list of users to display
    */
   @Input()
-  public users!: Observable<Array<User>>;
+  public users!: Array<User> | null;
 
   public columnDefs: Array<ColDef> = [
     { field: 'name' },

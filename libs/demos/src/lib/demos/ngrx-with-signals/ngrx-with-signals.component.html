@@ -1,4 +1,4 @@
-<ui-page-content title="NgRx Entity Demo">
+<ui-page-content title="NgRx with Signals">
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
@@ -30,7 +30,7 @@
           (change)="selectCompany($event)"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-72"
         >
-          <option selected value="">Choose a company</option>
+          <option selected value="">ALL</option>
           <option *ngFor="let company of Companies" [value]="company">
             {{ company }}
           </option>
@@ -38,19 +38,19 @@
       </div>
     </div>
 
-    <ng-container *ngIf="error$ | async as error">
+    <ng-container *ngIf="error() as errorMessage">
       <h1>Sorry!</h1>
-      <h3>{{ error }}</h3>
+      <h3>{{ errorMessage }}</h3>
     </ng-container>
-    <ng-container *ngIf="isLoading$ | async">
+    <ng-container *ngIf="isLoading()">
       <div class="flex flex-col mt-32 items-center space-y-12">
         <mat-spinner></mat-spinner>
         <p>... Fake loading ...</p>
       </div>
     </ng-container>
     <ngrx-demos-users-table
-      *ngIf="isLoaded$ | async"
-      [users]="users$ | async"
+      *ngIf="isLoaded()"
+      [users]="filteredUsers()"
     ></ngrx-demos-users-table>
   </div>
 </ui-page-content>

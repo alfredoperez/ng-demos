@@ -24,6 +24,10 @@ export class AppComponent {
       path: 'users',
       title: 'NgRx(Users)',
     },
+    {
+      path: 'ngrx-with-signals',
+      title: 'NgRx with Signals',
+    },
   ];
   isMobileMenuOpen = false;
 }

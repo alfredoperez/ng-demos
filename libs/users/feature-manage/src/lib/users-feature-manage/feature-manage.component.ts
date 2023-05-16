@@ -5,11 +5,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { PageContentComponent } from '@ng-demos/shared/ui/general';
 import {
+  Companies,
   ManageUsersFacade,
   UserModalComponent,
   UserTableComponent,
 } from '@ng-demos/users/domain';
-import { lastValueFrom } from 'rxjs';
+import { BehaviorSubject, combineLatest, lastValueFrom, map } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -25,11 +26,6 @@ import { lastValueFrom } from 'rxjs';
 })
 export class FeatureManageComponent {
   /**
-   * Observable of the list of users
-   */
-  public users$ = this.manageUsersFacade.users$;
-
-  /**
    * Observable with a flag when it is loading data
    */
   public isLoading$ = this.manageUsersFacade.isLoading$;
@@ -44,6 +40,20 @@ export class FeatureManageComponent {
    */
   public error$ = this.manageUsersFacade.error$;
 
+  selectedCompany = new BehaviorSubject<string>('');
+  selectedCompanyAction$ = this.selectedCompany.asObservable();
+
+  /**
+   * Observable of the list of users
+   */
+  public users$ = combineLatest([
+    this.manageUsersFacade.users$,
+    this.selectedCompanyAction$,
+  ]).pipe(
+    map(([users, company]) =>
+      company === '' ? users : users.filter((user) => user.company === company)
+    )
+  );
   constructor(
     private manageUsersFacade: ManageUsersFacade,
     private dialog: MatDialog
@@ -68,4 +78,11 @@ export class FeatureManageComponent {
 
     this.manageUsersFacade.addUser(user);
   }
+
+  selectCompany(value: Event) {
+    const newValue = (value.target as HTMLSelectElement).value;
+    this.selectedCompany.next(newValue);
+  }
+
+  protected readonly Companies = Companies;
 }

@@ -1,7 +1,7 @@
 import { computed, signal, Signal } from '@angular/core';
 
 export class SignalsSimpleStoreService<T> {
-  state = signal({} as T);
+  readonly state = signal({} as T);
 
   constructor() {}
 

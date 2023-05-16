@@ -13,6 +13,10 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import {
+  UserSignalsEffects,
+  usersSignalsFeature,
+} from '../../../../libs/demos/src/lib/demos/ngrx-with-signals/+state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -40,6 +44,16 @@ export const appConfig: ApplicationConfig = {
         pathMatch: 'full',
         loadComponent: () =>
           import('@ng-demos/demos').then((x) => x.SignalsSimpleStoreComponent),
+      },
+      {
+        path: 'ngrx-with-signals',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('@ng-demos/demos').then((x) => x.NgrxWithSignalsComponent),
+        providers: [
+          provideState(usersSignalsFeature),
+          provideEffects(UserSignalsEffects),
+        ],
       },
     ]),
     provideAnimations(),

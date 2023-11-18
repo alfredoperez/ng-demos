@@ -1,136 +1,79 @@
-<div class="min-h-full">
-  <nav class="bg-gray-800">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 items-center justify-between">
-        <div class="flex items-center">
-          <div class="flex-shrink-0">
-            <svg
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              data-reactroot=""
+<nav
+  class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
+>
+  <div
+    class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
+  >
+    <!-- Toggler -->
+    <button
+      class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+      type="button"
+      (click)="toggleCollapseShow('bg-white m-2 py-3 px-6')"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <!-- Brand -->
+    <a
+      class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+      href="javascript:void(0)"
+    >
+      Angular Demos
+    </a>
+
+    <!-- Collapse -->
+    <div
+      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded"
+      [ngClass]="collapseShow"
+    >
+      <!-- Collapse header -->
+      <div
+        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
+      >
+        <div class="flex flex-wrap">
+          <div class="w-6/12">
+            <a
+              class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+              href="javascript:void(0)"
             >
-              <path
-                fill="#4f46e5"
-                d="M20 2H4L2 8H8.5V11H15.5V8H22L20 2Z"
-                undefined="1"
-              ></path>
-              <path
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-miterlimit="10"
-                stroke-width="1"
-                stroke="#ffffff"
-                d="M7 5H17"
-              ></path>
-              <path
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-miterlimit="10"
-                stroke-width="1"
-                stroke="#ffffff"
-                d="M2 8H8.5V11H15.5V8H22"
-              ></path>
-              <path
-                fill="#4f46e5"
-                d="M15.5 8V11H8.5V8H2L3.5 14H8.5V17H15.5V14H20.5L22 8H15.5Z"
-                undefined="1"
-              ></path>
-              <path
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-miterlimit="10"
-                stroke-width="1"
-                stroke="#ffffff"
-                d="M2 14H8.5V17H15.5V14H22"
-              ></path>
-              <path
-                fill="#C4B6FF"
-                d="M15.5 14V17H8.5V14H2L4 22H20L22 14H15.5Z"
-                undefined="1"
-              ></path>
-            </svg>
+              Angular Demos
+            </a>
           </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <a
-                *ngFor="let route of routes"
-                [routerLink]="route.path"
-                routerLinkActive="bg-gray-900 text-white"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                aria-current="page"
-              >
-                {{ route.title }}
-              </a>
-            </div>
+          <div class="w-6/12 flex justify-end">
+            <button
+              type="button"
+              class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+              (click)="toggleCollapseShow('hidden')"
+            >
+              <i class="fas fa-times"></i>
+            </button>
           </div>
         </div>
-
-        <div class="-mr-2 flex md:hidden">
-          <button
-            type="button"
-            (click)="isMobileMenuOpen = !isMobileMenuOpen"
-            class="inline-flex items-center justify-center rounded-md bg-indigo-600 p-2 text-indigo-200 hover:bg-indigo-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
+      </div>
+      <!-- Form -->
+      <form class="mt-6 mb-4 md:hidden">
+        <div class="mb-3 pt-0">
+          <input
+            type="text"
+            placeholder="Search"
+            class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+          />
+        </div>
+      </form>
+      <!-- Navigation -->
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            *ngFor="let route of routes"
+            [routerLink]="route.path"
+            class="text-primary-500 hover:text-primary-600 text-xs uppercase py-3 font-bold block"
+            ><i class="fas fa-tv opacity-75 mr-2 text-sm"></i>
+            {{ route.title }}</a
           >
-            <span class="sr-only">Open main menu</span>
-            <svg
-              [ngClass]="isMobileMenuOpen ? 'hidden' : 'open'"
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-
-            <svg
-              [ngClass]="isMobileMenuOpen ? 'block' : 'hidden'"
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
-
-    <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="md:hidden">
-      <div *ngIf="isMobileMenuOpen" class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-        <a
-          href="#"
-          *ngFor="let route of routes"
-          [routerLink]="route.path"
-          routerLinkActive="bg-primary-700 text-white"
-          class="text-white hover:bg-primary-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium"
-          aria-current="page"
-        >
-          {{ route.title }}</a
-        >
-      </div>
-    </div>
-  </nav>
-
+  </div>
+</nav>
+<div class="relative md:ml-64 bg-blueGray-100">
   <router-outlet></router-outlet>
 </div>

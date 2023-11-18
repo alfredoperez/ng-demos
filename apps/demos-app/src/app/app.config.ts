@@ -21,7 +21,7 @@ import {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([
-      { path: '', pathMatch: 'full', redirectTo: 'home' },
+      { path: '', pathMatch: 'full', redirectTo: 'defer-loading' },
       {
         path: 'home',
         pathMatch: 'full',
@@ -54,6 +54,12 @@ export const appConfig: ApplicationConfig = {
           provideState(usersSignalsFeature),
           provideEffects(UserSignalsEffects),
         ],
+      },
+      {
+        path: 'defer-loading',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('@ng-demos/demos').then((x) => x.DeferLoadingComponent),
       },
     ]),
     provideAnimations(),

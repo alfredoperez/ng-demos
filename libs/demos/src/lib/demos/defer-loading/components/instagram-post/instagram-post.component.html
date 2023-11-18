@@ -1,0 +1,130 @@
+<div class="flex flex-col gap-4 p-4 w-96">
+  <!--  <div-->
+  <!--    class="w-full h-64 rounded-md overflow-hidden border-2 border-gray-300 bg-gray-200"-->
+  <!--  ></div>-->
+  @defer (on viewport; prefetch on idle) {
+  <img [ngSrc]="post.image" alt="Post Image" width="400" height="400" />
+  } @placeholder {
+  <div class="flex flex-col gap-4 p-4 w-96">
+    <div
+      class="w-full h-64 rounded-md overflow-hidden border-2 border-gray-300 bg-gray-200"
+    ></div>
+  </div>
+  }
+
+  <div class="flex items-center gap-2">
+    <button class="focus:outline-none">
+      <svg
+        class="h-6 w-6 text-gray-500 hover:text-gray-600 cursor-pointer"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+        />
+      </svg>
+    </button>
+    <button class="focus:outline-none">
+      <svg
+        class="h-6 w-6 text-gray-500 hover:text-gray-600 cursor-pointer"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <polyline points="9 17 4 12 9 7" />
+        <path d="M20 18v-2a4 4 0 0 0-4-4H4" />
+      </svg>
+    </button>
+    <button class="focus:outline-none">
+      <svg
+        class="h-6 w-6 text-gray-500 hover:text-gray-600 cursor-pointer"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="m22 2-7 20-4-9-9-4Z" />
+        <path d="M22 2 11 13" />
+      </svg>
+    </button>
+    <button class="focus:outline-none ml-auto">
+      <svg
+        class="h-6 w-6 text-gray-500 hover:text-gray-600 cursor-pointer"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+      </svg>
+    </button>
+  </div>
+  <p class="text-sm text-gray-500">
+    Likes
+    <strong class="font-medium text-gray-600">{{ post.likes }}</strong>
+    Comments:
+    <strong class="font-medium text-gray-600">{{ post.comments }}</strong>
+  </p>
+  <div class="w-full">
+    <input
+      checked="checked"
+      type="checkbox"
+      class="peer sr-only"
+      (click)="showComments = !showComments"
+    />
+    <label class="=w-full flex" (click)="showComments = !showComments">
+      Show comments
+      <svg
+        aria-label="Show comments"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="none"
+        viewBox="0 0 24 24"
+        [ngClass]="{ 'rotate-180': showComments }"
+      >
+        <path
+          fill="#212121"
+          d="M5.161 10.073C4.454 9.265 5.028 8 6.101 8h11.797c1.074 0 1.648 1.265.94 2.073l-5.521 6.31a1.75 1.75 0 0 1-2.634 0l-5.522-6.31ZM6.653 9.5l5.159 5.896a.25.25 0 0 0 .376 0l5.16-5.896H6.652Z"
+        />
+      </svg>
+    </label>
+    <div
+      [ngClass]="{ 'h-[200px]': showComments, 'h-0': !showComments }"
+      class="overflow-hidden h-0 bg-slate-300 duration-1000 ease-in-out"
+    >
+      @defer (on viewport; when post.comments.length> 0) {
+      <demos-post-comments></demos-post-comments>
+      } @placeholder {
+      <div>Comments Placeholder</div>
+      } @loading (after 100ms; minimum 1s) {
+      <div>Loading...</div>
+      } @error {
+      <div>Error</div>
+      }
+    </div>
+  </div>
+</div>

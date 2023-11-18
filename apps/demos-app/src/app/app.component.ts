@@ -13,10 +13,6 @@ import { AgGridModule } from 'ag-grid-angular';
 export class AppComponent {
   routes = [
     {
-      path: 'home',
-      title: 'Home',
-    },
-    {
       path: 'signals-simple-store',
       title: 'Signals (Simple Store)',
     },
@@ -28,6 +24,15 @@ export class AppComponent {
       path: 'ngrx-with-signals',
       title: 'NgRx with Signals',
     },
+    {
+      path: 'defer-loading',
+      title: 'Defer Loading',
+    },
   ];
   isMobileMenuOpen = false;
+  collapseShow = 'hidden';
+
+  toggleCollapseShow(classes: string) {
+    this.collapseShow = classes;
+  }
 }

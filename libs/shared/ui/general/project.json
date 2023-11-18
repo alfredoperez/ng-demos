@@ -26,49 +26,17 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/shared/ui/general/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/shared/ui/general/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "libs/shared/ui/general/**/*.ts",
           "libs/shared/ui/general/**/*.html"
         ]
-      }
-    },
-    "storybook": {
-      "executor": "@storybook/angular:start-storybook",
-      "options": {
-        "port": 4400,
-        "configDir": "libs/shared/ui/general/.storybook",
-        "browserTarget": "shared-ui-general:build-storybook",
-        "compodoc": false,
-        "styles": [".storybook/tailwind-imports.css"]
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "build-storybook": {
-      "executor": "@storybook/angular:build-storybook",
-      "outputs": ["{options.outputDir}"],
-      "options": {
-        "outputDir": "dist/storybook/shared-ui",
-        "configDir": "libs/shared/ui/general/.storybook",
-        "browserTarget": "shared-ui-general:build-storybook",
-        "compodoc": false,
-        "styles": [".storybook/tailwind-imports.css"]
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
       }
     }
   },

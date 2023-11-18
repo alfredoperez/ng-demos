@@ -1,0 +1,9 @@
+@for(comment of comments$ | async; track comment.id){
+<div>
+  <div class="flex items-center gap-2">
+    <strong class="font-medium text-gray-600">{{ comment.userName }}</strong>
+    <p class="text-sm text-gray-500">{{ comment.comment }}</p>
+  </div>
+  <p class="text-xs text-gray-400">{{ comment.timeAgo }}</p>
+</div>
+}

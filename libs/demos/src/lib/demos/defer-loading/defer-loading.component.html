@@ -1,0 +1,5 @@
+<div class="flex flex-col overflow-y-auto items-center w-full">
+  @for (post of posts$ | async; track post.id) {
+  <demos-instagram-post [post]="post"></demos-instagram-post>
+  }
+</div>

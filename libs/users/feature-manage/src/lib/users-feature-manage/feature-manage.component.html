@@ -37,6 +37,7 @@
         </select>
       </div>
     </div>
+    <ngrx-demos-users-table></ngrx-demos-users-table>
 
     <ng-container *ngIf="error$ | async as error">
       <h1>Sorry!</h1>
@@ -48,9 +49,5 @@
         <p>... Fake loading ...</p>
       </div>
     </ng-container>
-    <ngrx-demos-users-table
-      *ngIf="isLoaded$ | async"
-      [users]="users$ | async"
-    ></ngrx-demos-users-table>
   </div>
 </ui-page-content>

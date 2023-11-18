@@ -17,9 +17,9 @@ import { BehaviorSubject, combineLatest, lastValueFrom, map } from 'rxjs';
   imports: [
     CommonModule,
     PageContentComponent,
-    UserTableComponent,
     MatDialogModule,
     MatProgressSpinnerModule,
+    UserTableComponent,
   ],
   templateUrl: './feature-manage.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -59,6 +59,9 @@ export class FeatureManageComponent {
     private dialog: MatDialog
   ) {
     this.manageUsersFacade.enterPage();
+    // this.manageUsersFacade.loadUsers();
+    // Create a list of users
+    // this.manageUsersFacade.addUser({
   }
 
   /**
@@ -84,5 +87,6 @@ export class FeatureManageComponent {
     this.selectedCompany.next(newValue);
   }
 
+  // protected readonly Companies = Companies;
   protected readonly Companies = Companies;
 }

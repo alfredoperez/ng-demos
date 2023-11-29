@@ -14,6 +14,6 @@ export class InstagramPostComponent {
   showComments = false;
 
   ngOnInit() {
-    console.log('InstagramPostComponent: ngOnInit');
+    // console.log('InstagramPostComponent: ngOnInit');
   }
 }

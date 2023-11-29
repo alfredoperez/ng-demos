@@ -13,7 +13,7 @@ import { Mocks } from '../../defer-loading.mocks';
 })
 export class PostCommentsComponent {
   comments$ = of(Mocks.data.comments).pipe(
-    tap((comment) => console.log({ comment })),
+    tap((comment) => console.log(`Loading Comments`)),
     delay(2000),
   );
 }

@@ -1,5 +1,19 @@
 <div class="flex flex-col overflow-y-auto items-center w-full">
   @for (post of posts$ | async; track post.id) {
-  <demos-instagram-post [post]="post"></demos-instagram-post>
+    @defer (on viewport; prefetch on idle) {
+      <demos-instagram-post [post]="post"></demos-instagram-post>
+    } @loading {
+      <div class="flex flex-col gap-4 p-4 w-96">
+        <div
+          class="w-full h-64 rounded-md overflow-hidden border-2 border-gray-300 bg-gray-200"
+        ></div>
+      </div>
+    } @placeholder {
+      <div class="flex flex-col gap-4 p-4 w-96">
+        <div
+          class="w-full h-64 rounded-md overflow-hidden border-2 border-gray-300 bg-gray-200"
+        ></div>
+      </div>
+    }
   }
 </div>

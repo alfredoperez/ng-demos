@@ -1,16 +1,5 @@
 <div class="flex flex-col gap-4 p-4 w-96">
-  <!--  <div-->
-  <!--    class="w-full h-64 rounded-md overflow-hidden border-2 border-gray-300 bg-gray-200"-->
-  <!--  ></div>-->
-  @defer (on viewport; prefetch on idle) {
-  <img [ngSrc]="post.image" alt="Post Image" width="400" height="400" />
-  } @placeholder {
-  <div class="flex flex-col gap-4 p-4 w-96">
-    <div
-      class="w-full h-64 rounded-md overflow-hidden border-2 border-gray-300 bg-gray-200"
-    ></div>
-  </div>
-  }
+  <img [ngSrc]="post.image" alt="Post Image" height="400" width="400" />
 
   <div class="flex items-center gap-2">
     <button class="focus:outline-none">
@@ -88,27 +77,27 @@
     Comments:
     <strong class="font-medium text-gray-600">{{ post.comments }}</strong>
   </p>
-  <div class="w-full">
+  <div #commentsSection class="w-full">
     <input
-      checked="checked"
-      type="checkbox"
-      class="peer sr-only"
       (click)="showComments = !showComments"
+      checked="checked"
+      class="peer sr-only"
+      type="checkbox"
     />
-    <label class="=w-full flex" (click)="showComments = !showComments">
+    <label (click)="showComments = !showComments" class="=w-full flex">
       Show comments
       <svg
-        aria-label="Show comments"
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        fill="none"
-        viewBox="0 0 24 24"
         [ngClass]="{ 'rotate-180': showComments }"
+        aria-label="Show comments"
+        fill="none"
+        height="20"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          fill="#212121"
           d="M5.161 10.073C4.454 9.265 5.028 8 6.101 8h11.797c1.074 0 1.648 1.265.94 2.073l-5.521 6.31a1.75 1.75 0 0 1-2.634 0l-5.522-6.31ZM6.653 9.5l5.159 5.896a.25.25 0 0 0 .376 0l5.16-5.896H6.652Z"
+          fill="#212121"
         />
       </svg>
     </label>
@@ -116,14 +105,14 @@
       [ngClass]="{ 'h-[200px]': showComments, 'h-0': !showComments }"
       class="overflow-hidden h-0 bg-slate-300 duration-1000 ease-in-out"
     >
-      @defer (on viewport; when post.comments.length> 0) {
-      <demos-post-comments></demos-post-comments>
+      @defer (on viewport(commentsSection); when post.comments.length > 0) {
+        <demos-post-comments></demos-post-comments>
       } @placeholder {
-      <div>Comments Placeholder</div>
-      } @loading (after 100ms; minimum 1s) {
-      <div>Loading...</div>
+        <div>Comments Placeholder</div>
+      } @loading (after 100ms; minimum 500ms) {
+        <div>Loading...</div>
       } @error {
-      <div>Error</div>
+        <div>Error</div>
       }
     </div>
   </div>

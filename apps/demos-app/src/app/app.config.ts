@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
         pathMatch: 'full',
         loadComponent: () =>
           import('@ng-demos/home/feature-landing').then(
-            (x) => x.FeatureLandingComponent
+            (x) => x.FeatureLandingComponent,
           ),
       },
       {
@@ -35,7 +35,7 @@ export const appConfig: ApplicationConfig = {
         pathMatch: 'full',
         loadComponent: () =>
           import('@ng-demos/users/feature-manage').then(
-            (x) => x.FeatureManageComponent
+            (x) => x.FeatureManageComponent,
           ),
         providers: [provideState(usersFeature), provideEffects(UserEffects)],
       },
@@ -61,6 +61,12 @@ export const appConfig: ApplicationConfig = {
         loadComponent: () =>
           import('@ng-demos/demos').then((x) => x.DeferLoadingComponent),
       },
+      {
+        path: 'signals-query-store',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('@ng-demos/demos').then((x) => x.SignalsQueryStoreComponent),
+      },
     ]),
     provideAnimations(),
     provideStore(
@@ -70,7 +76,7 @@ export const appConfig: ApplicationConfig = {
           strictActionImmutability: true,
           strictStateImmutability: true,
         },
-      }
+      },
     ),
     provideRouterStore(),
     provideStoreDevtools({

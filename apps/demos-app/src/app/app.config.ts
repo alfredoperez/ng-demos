@@ -67,6 +67,12 @@ export const appConfig: ApplicationConfig = {
         loadComponent: () =>
           import('@ng-demos/demos').then((x) => x.SignalsQueryStoreComponent),
       },
+      {
+        path: 'api-service-demo',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('@ng-demos/demos').then((x) => x.ApiServiceDemoComponent),
+      },
     ]),
     provideAnimations(),
     provideStore(

@@ -28,6 +28,10 @@ export class AppComponent {
       path: 'defer-loading',
       title: 'Defer Loading',
     },
+    {
+      path: 'api-service-demo',
+      title: 'API Service',
+    },
   ];
   isMobileMenuOpen = false;
   collapseShow = 'hidden';

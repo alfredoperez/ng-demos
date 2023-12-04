@@ -6,7 +6,6 @@ import {
   signal,
 } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatLegacySelectModule } from '@angular/material/legacy-select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PageContentComponent } from '@ng-demos/shared/ui/general';
 import { UserModalComponent, UserTableComponent } from '@ng-demos/users/domain';
@@ -23,7 +22,6 @@ import { Companies } from './models/user';
     PageContentComponent,
     UserTableComponent,
     MatDialogModule,
-    MatLegacySelectModule,
   ],
   templateUrl: './ngrx-with-signals.component.html',
   styleUrls: ['./ngrx-with-signals.component.scss'],
@@ -71,7 +69,7 @@ export class NgrxWithSignalsComponent {
 
   constructor(
     private manageUsersFacade: ManageUsersFacade,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     this.manageUsersFacade.enterPage();
   }
@@ -84,7 +82,7 @@ export class NgrxWithSignalsComponent {
     const user = await lastValueFrom(
       this.dialog
         .open(UserModalComponent, { height: '400px', width: '600px' })
-        .afterClosed()
+        .afterClosed(),
     );
 
     if (!user) {

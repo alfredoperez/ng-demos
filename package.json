@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "nx",
-    "postinstall": "node ./decorate-angular-cli.js"
+    "postinstall": "node ./decorate-angular-cli.js",
+    "start-json-server": "json-server --watch  db.json --port 3000"
   },
   "private": true,
   "dependencies": {

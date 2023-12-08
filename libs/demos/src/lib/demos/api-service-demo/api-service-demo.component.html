@@ -1,4 +1,4 @@
-<ui-page-content title="NgRx with Signals">
+<ui-page-content title="Demo of a re-usable API Service ">
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
@@ -29,9 +29,17 @@
         <p>... Fake loading ...</p>
       </div>
     </ng-container>
-    <ngrx-demos-users-table
-      *ngIf="isLoaded()"
-      [users]="filteredUsers()"
-    ></ngrx-demos-users-table>
+    @if (users()) {
+      <div class="mt-4 items-center" @fadeInUp>
+        <ag-grid-angular
+          class="ag-theme-alpine w-full max-h-full"
+          style="height: 550px"
+          [rowData]="users()"
+          [columnDefs]="columnDefs"
+          [pagination]="true"
+        >
+        </ag-grid-angular>
+      </div>
+    }
   </div>
 </ui-page-content>

@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
+import { Observable } from 'rxjs';
 
-class PaginationQueryDto {
-  limit!: number;
+export interface RequestQuery {
+  limit: number;
 
-  page!: number;
+  page: number;
 
-  orderDirection!: 'ASC' | 'DESC';
+  order: 'ASC' | 'DESC';
 
-  orderBy!: string;
+  sort: string;
 }
 
 export abstract class ApiService<T> {
@@ -17,8 +17,8 @@ export abstract class ApiService<T> {
 
   protected constructor(private entityName: string) {}
 
-  public getAll(paginationQueryDto?: PaginationQueryDto): Observable<T[]> {
-    return this.request('GET', paginationQueryDto);
+  public getAll(requestQuery?: Partial<RequestQuery>): Observable<T[]> {
+    return this.request('GET', requestQuery);
   }
 
   public get(id: number): Observable<T> {
@@ -35,7 +35,7 @@ export abstract class ApiService<T> {
 
   protected request<T>(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
-    paginationQuery?: PaginationQueryDto,
+    paginationQuery?: Partial<RequestQuery>,
     body?: any,
     id?: number,
   ) {
@@ -47,18 +47,18 @@ export abstract class ApiService<T> {
 
   private getUrl(id?: number) {
     const idPath = !id ? '' : `/${id}`;
-    // TODO:  need to make this an environment variable
-    return `http://localhost:7000/${this.entityName}${idPath}`;
+    return `http://localhost:3000/${this.entityName}${idPath}`;
   }
 
-  private getOptions(paginationQuery?: PaginationQueryDto, body?: any) {
+  private getOptions(requestQuery?: Partial<RequestQuery>, body?: any) {
     let params = {};
-    if (paginationQuery) {
+    if (requestQuery) {
+      const { limit, page, sort, order } = requestQuery;
       const paginationParams = {
-        limit: paginationQuery.limit.toString(),
-        page: paginationQuery.page.toString(),
-        orderBy: paginationQuery.orderBy,
-        orderDirection: paginationQuery.orderDirection,
+        _limit: limit?.toString(),
+        _page: page?.toString(),
+        _order: order,
+        _sort: sort,
       };
       params = { ...paginationParams };
     }

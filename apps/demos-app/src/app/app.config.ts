@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   importProvidersFrom,
@@ -93,6 +94,8 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
     }),
     provideEffects(),
+    provideHttpClient(),
+    provideAnimations(),
     importProvidersFrom(BrowserAnimationsModule),
   ],
 };

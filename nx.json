@@ -10,16 +10,11 @@
       "inputs": ["default", "^production"],
       "cache": true
     },
-    "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
-      "cache": true
-    },
     "build-storybook": {
       "inputs": [
         "default",
         "^production",
         "{workspaceRoot}/.storybook/**/*",
-        "!{projectRoot}/.storybook/**/*",
         "!{projectRoot}/.storybook/**/*",
         "{projectRoot}/.storybook/**/*",
         "{projectRoot}/tsconfig.storybook.json"
@@ -38,6 +33,10 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/eslint:lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "cache": true
     }
   },
   "namedInputs": {
@@ -76,5 +75,12 @@
       "style": "scss"
     }
   },
-  "nxCloudAccessToken": "NjlmMmY1OTUtYWUwNi00NjFhLTliMGMtMDJkNjhhNzA2NzdhfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "NjlmMmY1OTUtYWUwNi00NjFhLTliMGMtMDJkNjhhNzA2NzdhfHJlYWQtd3JpdGU=",
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": ["build-storybook"]
+      }
+    }
+  }
 }

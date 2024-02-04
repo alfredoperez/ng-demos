@@ -17,7 +17,7 @@ interface Task {
   userId: number;
 }
 @Injectable({ providedIn: 'root' })
-export class UsersService extends ApiService<User> {
+export class UsersApiService extends ApiService<User> {
   constructor() {
     super('users');
   }

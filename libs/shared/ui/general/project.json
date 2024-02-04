@@ -32,6 +32,42 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/shared/ui/general/.storybook",
+        "browserTarget": "shared-ui-general:build-storybook",
+        "compodoc": false,
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/shared-ui-general",
+        "configDir": "libs/shared/ui/general/.storybook",
+        "browserTarget": "shared-ui-general:build-storybook",
+        "styles": ["libs/shared/ui/general/.storybook/tailwind-imports.css"],
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/shared/ui/general/.storybook --url=http://localhost:4400"
+      }
     }
   },
   "tags": []
